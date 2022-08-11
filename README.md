@@ -16,3 +16,5 @@
 09. Create Terraform template main.tf with basic commands for creating basic resource from KeyVault parameters
 10. Run Pipeline and validate if Project resources have been created
 11. Add main.tf containing Terraform commands
+ 	a. Change Core Resource Group name 
+	b. Change KeyVault name
