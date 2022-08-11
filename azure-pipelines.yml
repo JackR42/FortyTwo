@@ -70,8 +70,16 @@ stages:
   jobs:
   - job:
     steps:
+    - task: TerraformInstaller@0
+      displayName: TF_Install
+      inputs:
+        terraformVersion: 'latest'
 
 - stage: TF_DECOMMISSION
   jobs:
   - job:
     steps:
+    - task: TerraformInstaller@0
+      displayName: TF_Install
+      inputs:
+        terraformVersion: 'latest'
