@@ -5,19 +5,19 @@
 #az login
 
 # Setup Variables
-$ProjectName = "project04"
+$ProjectName = "FortyTwo"
 
 $randomInt = Get-Random -Maximum 999999
+$randomInt 
 $subscriptionId=$(az account show --query id -o tsv)
 $subscriptionName = "S2-Visual Studio Ultimate with MSDN"
 $resourceGroupNameProject = "S2-RG-$ProjectName"
 $resourceGroupNameCore = "$ResourceGroupNameProject-CORE"
-$storageName = "storage$ProjectName$randomInt"
+$storageName = "storage$ProjectName$randomInt".ToLower()
 $kvName = "keyvault$ProjectName$randomInt"
-#$appName="SPN-$ProjectName" #AppName=SpnName
 $spnName="SPN-$ProjectName" #AppName=SpnName
 $region = "westeurope"
-#$spnName = "$appName"
+$websiteStorageName = "$ProjectName$randomInt".ToLower()
 $dwp = Read-Host -Prompt "Dwp?"
 
 # Create a CORE resource group
@@ -67,9 +67,10 @@ az storage container create `
     --auth-mode login
 
 # Create Terraform Service Principal and assign RBAC Role on Key Vault
-$spnJSON = az ad sp create-for-rbac --name $appName `
+$spnJSON = az ad sp create-for-rbac --name $spnName `
     --role "Key Vault Secrets Officer" `
     --scopes /subscriptions/$subscriptionId/resourceGroups/$resourceGroupNameCore/providers/Microsoft.KeyVault/vaults/$kvName
+# az ad sp list
 
 # Save new Terraform Service Principal details to key vault
 $spnObj = $spnJSON | ConvertFrom-Json
@@ -88,15 +89,15 @@ $null = az keyvault secret set --vault-name $kvName --name "ARM-SUBSCRIPTION-ID"
 $null = az keyvault secret set --vault-name $kvName --name "ARM-SPN" --value $spnObj.displayName
 $null = az keyvault secret set --vault-name $kvName --name "ARM-RND" --value $randomInt 
 $null = az keyvault secret set --vault-name $kvName --name "ARM-RG-Project" --value $resourceGroupNameProject
-$null = az keyvault secret set --vault-name $kvName --name "SQLServer-InstanceName" --value "sqlserver$ProjectName$randomInt"
+$null = az keyvault secret set --vault-name $kvName --name "SQLServer-InstanceName" --value "$ProjectName$randomInt"
 $null = az keyvault secret set --vault-name $kvName --name "SQLServer-InstanceAdminUserName" --value 'admindba'
 $null = az keyvault secret set --vault-name $kvName --name "SQLServer-InstanceAdminPassword" --value $dwp
 $null = az keyvault secret set --vault-name $kvName --name "SQLServer-Database1Name" --value "dba"
-$null = az keyvault secret set --vault-name $kvName --name "WebSite-StorageName" --value "website$ProjectName$randomInt"
+$null = az keyvault secret set --vault-name $kvName --name "WebSite-StorageName" --value $websiteStorageName
 
 
 # Assign additional RBAC role to Terraform Service Principal Subscription as Contributor and access to backend storage
-az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
+az ad sp list --display-name $spnName --query [].appId -o tsv | ForEach-Object {
     az role assignment create --assignee "$_" `
         --role "Contributor" `
         --subscription $subscriptionId
@@ -124,6 +125,8 @@ foreach($object_properties in $spnObj.psobject.properties) {
 }
 Write-Output "Service Connection Name (SPN): $spnName"
 Write-Output "KeyVault: $kvName"
+Write-Output "SQLServer: $ProjectName$randomInt"
+Write-Output "WebSite: $websiteStorageName"
 
 
 
