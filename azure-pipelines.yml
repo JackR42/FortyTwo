@@ -14,13 +14,6 @@ stages:
   jobs:
   - job:
     steps:
-    - script: echo Hello, world!
-      displayName: 'Run a one-line script'
-
-    - script: |
-        echo Add other tasks to build, test, and deploy your project.
-        echo See https://aka.ms/yaml
-      displayName: 'Run a multi-line script'
 
     - task: TerraformInstaller@0
       displayName: TF_Install
@@ -53,6 +46,10 @@ stages:
         command: 'plan'
         commandOptions: '-out main.tfplan'
         environmentServiceNameAzureRM: 'SPN-FortyTwo'
+
+- stage: TF_PROVISION
+  jobs:
+  - job:
 
     - task: TerraformTaskV3@3
       displayName: 'TF_Apply'
