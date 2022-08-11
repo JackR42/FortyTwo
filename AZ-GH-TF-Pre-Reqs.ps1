@@ -142,3 +142,5 @@ Write-Output "WebSite: $websiteStorageName"
 ## Static Web App: https://www.tatvasoft.com/blog/serverless-web-application-in-azure/
 ## https://github.com/subhankars/StaticWebApp
 ## https://docs.microsoft.com/en-us/aspnet/web-pages/overview/data/5-working-with-data
+
+## Create SPN: https://rozemuller.com/prepare-azure-devops-for-wvd-deployment-create-a-service-connection/
