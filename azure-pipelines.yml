@@ -46,25 +46,6 @@ stages:
         command: 'plan'
         commandOptions: '-out main.tfplan'
         environmentServiceNameAzureRM: 'SPN-FortyTwo'
-
-- stage: TF_PROVISION
-  jobs:
-  - job:
-    steps:
-    - task: TerraformInstaller@0
-      displayName: TF_Install
-      inputs:
-        terraformVersion: 'latest'
-    - task: TerraformTaskV3@3
-      displayName: TF_Init
-      inputs:
-        provider: 'azurerm'
-        command: 'init'
-        backendServiceArm: 'SPN-FortyTwo'
-        backendAzureRmResourceGroupName: 'S2-RG-FortyTwo-CORE'
-        backendAzureRmStorageAccountName: 'storagecrfortytwo738875'
-        backendAzureRmContainerName: 'tfstate'
-        backendAzureRmKey: 'main.tfstate'
     - task: TerraformTaskV3@3
       displayName: 'TF_Apply'
       inputs:
@@ -84,3 +65,13 @@ stages:
         deployType: 'SqlTask'
         SqlFile: 'dba01.sql'
         IpDetectionMethod: 'AutoDetect'
+
+- stage: TF_PROVISION
+  jobs:
+  - job:
+    steps:
+
+- stage: TF_DECOMMISSION
+  jobs:
+  - job:
+    steps:
