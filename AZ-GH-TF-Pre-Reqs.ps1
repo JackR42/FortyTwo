@@ -8,12 +8,13 @@
 $ProjectName = "FortyTwo"
 
 $randomInt = Get-Random -Maximum 999999
+#$randomInt = 977542
 $randomInt 
 $subscriptionId=$(az account show --query id -o tsv)
 $subscriptionName = "S2-Visual Studio Ultimate with MSDN"
 $resourceGroupNameProject = "S2-RG-$ProjectName"
 $resourceGroupNameCore = "$ResourceGroupNameProject-CORE"
-$storageName = "storage$ProjectName$randomInt".ToLower()
+$storageName = "storagecore$ProjectName$randomInt".ToLower()
 $kvName = "keyvault$ProjectName$randomInt"
 $spnName="SPN-$ProjectName" #AppName=SpnName
 $region = "westeurope"
