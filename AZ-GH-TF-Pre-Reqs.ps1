@@ -18,6 +18,7 @@ $kvName = "keyvault$ProjectName$randomInt"
 $spnName="SPN-$ProjectName" #AppName=SpnName
 $region = "westeurope"
 $websiteStorageName = "$ProjectName$randomInt".ToLower()
+$SQLServerInstanceName = "$ProjectName$randomInt".ToLower()
 $dwp = Read-Host -Prompt "Dwp?"
 
 # Create a CORE resource group
@@ -89,7 +90,7 @@ $null = az keyvault secret set --vault-name $kvName --name "ARM-SUBSCRIPTION-ID"
 $null = az keyvault secret set --vault-name $kvName --name "ARM-SPN" --value $spnObj.displayName
 $null = az keyvault secret set --vault-name $kvName --name "ARM-RND" --value $randomInt 
 $null = az keyvault secret set --vault-name $kvName --name "ARM-RG-Project" --value $resourceGroupNameProject
-$null = az keyvault secret set --vault-name $kvName --name "SQLServer-InstanceName" --value "$ProjectName$randomInt"
+$null = az keyvault secret set --vault-name $kvName --name "SQLServer-InstanceName" --value $SQLServerInstanceName 
 $null = az keyvault secret set --vault-name $kvName --name "SQLServer-InstanceAdminUserName" --value 'admindba'
 $null = az keyvault secret set --vault-name $kvName --name "SQLServer-InstanceAdminPassword" --value $dwp
 $null = az keyvault secret set --vault-name $kvName --name "SQLServer-Database1Name" --value "dba"
