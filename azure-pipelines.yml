@@ -19,15 +19,39 @@ steps:
   displayName: 'Run a multi-line script'
 
 - task: TerraformInstaller@0
+  displayName: TF_Install
   inputs:
     terraformVersion: 'latest'
 
 - task: TerraformTaskV3@3
+  displayName: TF_Init
   inputs:
     provider: 'azurerm'
-    command: 'init'
-    backendServiceArm: 'SPN-FortyTwo'
-    backendAzureRmResourceGroupName: 'S2-RG-FortyTwo-CORE'
-    backendAzureRmStorageAccountName: 'storagefortytwo801942'
-    backendAzureRmContainerName: 'tfstate'
-    backendAzureRmKey: 'main.tfstate'
+    command: 'plan -out main.tfplan'
+    environmentServiceNameAzureRM: 'SPN-FortyTwo'
+  displayName: 'TF_Plan'
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    commandOptions: '-out main.tfplan'
+    environmentServiceNameAzureRM: 'SPN-FortyTwo'
+
+- task: TerraformTaskV3@3
+  displayName: 'TF_Apply'
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    commandOptions: ' main.tfplan'
+    environmentServiceNameAzureRM: 'SPN-FortyTwo'
+- task: SqlAzureDacpacDeployment@1
+  displayName: 'TF_SQL'
+  inputs:
+    azureSubscription: 'SPN-project04'
+    AuthenticationType: 'server'
+    ServerName: '$(SQLServer-InstanceName).database.windows.net'
+    DatabaseName: '$(SQLServer-Database1Name)'
+    SqlUsername: '$(SQLServer-InstanceAdminUserName)'
+    SqlPassword: '$(SQLServer-InstanceAdminPassword)'
+    deployType: 'SqlTask'
+    SqlFile: 'dba01.sql'
+    IpDetectionMethod: 'AutoDetect'
