@@ -29,6 +29,8 @@ steps:
     provider: 'azurerm'
     command: 'plan -out main.tfplan'
     environmentServiceNameAzureRM: 'SPN-FortyTwo'
+
+- task: TerraformTaskV3@3
   displayName: 'TF_Plan'
   inputs:
     provider: 'azurerm'
