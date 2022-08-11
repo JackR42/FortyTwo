@@ -19,8 +19,8 @@ $storageName = "storagecr$ProjectName$randomInt".ToLower()
 $kvName = "keyvault$ProjectName$randomInt"
 $spnName="SPN-$ProjectName" #AppName=SpnName
 $region = "westeurope"
-$websiteStorageName = "$ProjectName$randomInt".ToLower()
-$SQLServerInstanceName = "$ProjectName$randomInt".ToLower()
+$websiteStorageName = "website$ProjectName$randomInt".ToLower()
+$SQLServerInstanceName = "sql$ProjectName$randomInt".ToLower()
 $dwp = Read-Host -Prompt "Dwp?"
 
 # Create a CORE resource group
