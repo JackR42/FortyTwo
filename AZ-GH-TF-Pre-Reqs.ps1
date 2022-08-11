@@ -9,12 +9,13 @@ $ProjectName = "FortyTwo"
 
 $randomInt = Get-Random -Maximum 999999
 #$randomInt = 977542
-$randomInt 
+Write-Output "Service Connection Name (SPN): $randomInt"
+
 $subscriptionId=$(az account show --query id -o tsv)
 $subscriptionName = "S2-Visual Studio Ultimate with MSDN"
 $resourceGroupNameProject = "S2-RG-$ProjectName"
 $resourceGroupNameCore = "$ResourceGroupNameProject-CORE"
-$storageName = "storagecore$ProjectName$randomInt".ToLower()
+$storageName = "storagecr$ProjectName$randomInt".ToLower()
 $kvName = "keyvault$ProjectName$randomInt"
 $spnName="SPN-$ProjectName" #AppName=SpnName
 $region = "westeurope"
@@ -126,7 +127,9 @@ foreach($object_properties in $spnObj.psobject.properties) {
     }
 }
 Write-Output "Service Connection Name (SPN): $spnName"
-Write-Output "KeyVault: $kvName"
+Write-Output "CORE Resource Group: $resourceGroupNameCore "
+Write-Output "CORE KeyVault: $kvName"
+Write-Output "CORE StorageName TFState: $storageName"
 Write-Output "SQLServer: $ProjectName$randomInt"
 Write-Output "WebSite: $websiteStorageName"
 
