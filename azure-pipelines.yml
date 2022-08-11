@@ -27,8 +27,12 @@ steps:
   displayName: TF_Init
   inputs:
     provider: 'azurerm'
-    command: 'plan -out main.tfplan'
-    environmentServiceNameAzureRM: 'SPN-FortyTwo'
+    command: 'init'
+    backendServiceArm: 'SPN-FortyTwo'
+    backendAzureRmResourceGroupName: 'S2-RG-FortyTwo-CORE'
+    backendAzureRmStorageAccountName: 'storagefortytwo801942'
+    backendAzureRmContainerName: 'tfstate'
+    backendAzureRmKey: 'main.tfstate'
 
 - task: TerraformTaskV3@3
   displayName: 'TF_Plan'
