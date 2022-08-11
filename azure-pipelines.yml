@@ -52,6 +52,16 @@ stages:
   - job:
     steps:
     - task: TerraformTaskV3@3
+      displayName: TF_Init
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: 'SPN-FortyTwo'
+        backendAzureRmResourceGroupName: 'S2-RG-FortyTwo-CORE'
+        backendAzureRmStorageAccountName: 'storagecrfortytwo738875'
+        backendAzureRmContainerName: 'tfstate'
+        backendAzureRmKey: 'main.tfstate'
+    - task: TerraformTaskV3@3
       displayName: 'TF_Apply'
       inputs:
         provider: 'azurerm'
