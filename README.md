@@ -15,3 +15,4 @@
 08. Create empty Pipeline, using SPN to Azure and service connection to Azure
 09. Create Terraform template main.tf with basic commands for creating basic resource from KeyVault parameters
 10. Run Pipeline and validate if Project resources have been created
+11. Add main.tf containing Terraform commands
