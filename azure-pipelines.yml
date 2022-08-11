@@ -10,7 +10,7 @@ pool:
   vmImage: windows-latest
 
 stages:
-- stage: TF_Validate
+- stage: TF_VALIDATE
   jobs:
   - job:
     steps:
@@ -51,6 +51,10 @@ stages:
   jobs:
   - job:
     steps:
+    - task: TerraformInstaller@0
+      displayName: TF_Install
+      inputs:
+        terraformVersion: 'latest'
     - task: TerraformTaskV3@3
       displayName: TF_Init
       inputs:
