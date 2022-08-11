@@ -8,7 +8,7 @@ terraform {
 
 ### BEGIN KeyVault
 data "azurerm_key_vault" "project" {
-  name                = "keyvaultFortyTwo801942"
+  name                = "keyvaultFortyTwo738875"
   resource_group_name = "S2-RG-FortyTwo-CORE"
 }
 data "azurerm_key_vault_secret" "secret0" {
