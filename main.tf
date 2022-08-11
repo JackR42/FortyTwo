@@ -31,6 +31,10 @@ data "azurerm_key_vault_secret" "secret4" {
   name         = "SQLServer-Database1Name"
   key_vault_id = data.azurerm_key_vault.project.id
 }
+data "azurerm_key_vault_secret" "secret5" {
+  name         = "WebSite-StorageName"
+  key_vault_id = data.azurerm_key_vault.project.id
+}
 
 ### END KeyVault
 
@@ -83,7 +87,7 @@ resource "azurerm_mssql_database" "project" {
 #WebSite
 #Create Storage account
 resource "azurerm_storage_account" "project" {
-  name = "websiteproject04875842"
+  name = data.azurerm_key_vault_secret.secret4.value
   resource_group_name = azurerm_resource_group.project.name
  
   location = azurerm_resource_group.project.location
@@ -105,5 +109,5 @@ resource "azurerm_storage_blob" "project" {
   content_type           = "text/html"
   source_content         = "<H1><center>Hello project42 - DEV!</center></H1>"
 }
-# https://websiteproject04875842.z6.web.core.windows.net
+# https://<WebSite-StorageName>.z6.web.core.windows.net
 ### END MAIN
