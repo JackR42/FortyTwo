@@ -30,3 +30,4 @@ steps:
     backendAzureRmResourceGroupName: 'S2-RG-FortyTwo-CORE'
     backendAzureRmStorageAccountName: 'storagefortytwo801942'
     backendAzureRmContainerName: 'tfstate'
+    backendAzureRmKey: 'main.tfstate'
