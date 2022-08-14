@@ -45,7 +45,6 @@ stages:
         provider: 'azurerm'
         command: 'plan'
         commandOptions: '-out=main.tfplan -input=false -var-file=vars-dev.tfvars'
-#        commandOptions: '-out=main.tfplan -input=false -var-file="vars-dev.tfvars"'
   
         environmentServiceNameAzureRM: 'SPN-FortyTwo'
     - task: TerraformTaskV3@3
@@ -53,8 +52,7 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'apply'
-        commandOptions: '-input=false -var-file=vars-dev.tfvars main.tfplan'
-#        commandOptions: ' main.tfplan -input=false '
+        commandOptions: 'main.tfplan'
         environmentServiceNameAzureRM: 'SPN-FortyTwo'
     - task: SqlAzureDacpacDeployment@1
       displayName: 'TF_SQL'
