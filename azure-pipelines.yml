@@ -44,7 +44,7 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'plan'
-        commandOptions: '-out=main.tfplan -input=false'
+        commandOptions: '-out=main.tfplan -input=false -var-file=vars-dev.tfvars'
 #        commandOptions: '-out=main.tfplan -input=false -var-file="vars-dev.tfvars"'
   
         environmentServiceNameAzureRM: 'SPN-FortyTwo'
