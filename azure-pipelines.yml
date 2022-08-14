@@ -44,7 +44,7 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'plan'
-        commandOptions: '-out=main.tfplan'
+        commandOptions: '-out=main.tfplan -input=false'
 #        commandOptions: '-out=main.tfplan -input=false -var-file="vars-dev.tfvars"'
   
         environmentServiceNameAzureRM: 'SPN-FortyTwo'
@@ -53,7 +53,7 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'apply'
-        commandOptions: 'main.tfplan'
+        commandOptions: 'main.tfplan -input=false'
 #        commandOptions: ' main.tfplan -input=false -var-file="vars-dev.tfvars"'
         environmentServiceNameAzureRM: 'SPN-FortyTwo'
     - task: SqlAzureDacpacDeployment@1
