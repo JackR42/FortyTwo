@@ -87,7 +87,7 @@ stages:
         instructions: 'Stage TF_DECOMMISSION, do you approve?'
   - job: 
     dependsOn: approvedecom
-#    condition: SucceededWithIssues()
+    condition: Succeeded()
     steps:
     - task: TerraformInstaller@0
       displayName: TF_Decommission
