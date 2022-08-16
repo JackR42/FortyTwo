@@ -79,7 +79,7 @@ stages:
 - stage: TF_DECOMMISSION
   jobs:
   - job:
-  steps:
+    steps:
     - task: ManualValidation@0
       displayName: TF_Approve
       inputs:
