@@ -89,6 +89,7 @@ stages:
     displayName: TF_Decommission
     dependsOn: GetApprovalForDecommissioning
     condition: SucceededWithIssues()
+    steps:
     - task: TerraformInstaller@0
       inputs:
         terraformVersion: 'latest'
