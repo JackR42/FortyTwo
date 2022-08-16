@@ -77,6 +77,7 @@ stages:
         terraformVersion: 'latest'
 
 - stage: TF_APPROVE
+  pool: server
   jobs:
   - job:
     steps:
@@ -84,6 +85,7 @@ stages:
       displayName: TF_ApproveDecommissioning
       inputs:
         instructions: 'Task TF_DECOMMISSION, approve?'
+
 - stage: TF_DECOMMISSION
   jobs:
   - job:
