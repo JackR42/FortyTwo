@@ -85,3 +85,5 @@ stages:
       displayName: TF_Approve
       inputs:
         instructions: 'Stage TF_DECOMMISSION, do you approve?'
+  - job: 
+    displayName: TF_Decommission
