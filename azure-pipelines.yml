@@ -93,3 +93,17 @@ stages:
       displayName: TF_Destroy
       inputs:
         terraformVersion: 'latest'
+    - task: TerraformTaskV3@3
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: 'SPN-FortyTwo'
+        backendAzureRmResourceGroupName: 'S2-RG-FortyTwo-CORE'
+        backendAzureRmStorageAccountName: 'storagecrfortytwo738875'
+        backendAzureRmContainerName: 'tfstate'
+        backendAzureRmKey: 'main.tfstate'
+    - task: TerraformTaskV3@3
+      inputs:
+        provider: 'azurerm'
+        command: 'destroy'
+        environmentServiceNameAzureRM: 'SPN-FortyTwo'
