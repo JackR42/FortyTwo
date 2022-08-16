@@ -78,7 +78,7 @@ stages:
 
 - stage: TF_DECOMMISSION
   jobs:
-  - job:
+  - job: GetApprovalForDecommissioning
     pool: server
     steps:
     - task: ManualValidation@0
