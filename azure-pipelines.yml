@@ -80,10 +80,6 @@ stages:
   jobs:
   - job:
     steps:
-
-    - task: ManualIntervention@8
-      inputs:
-        instructions: 'Stage TF_DECOMMISSION, continue?'    
     - task: TerraformInstaller@0
       displayName: TF_Install
       inputs:
