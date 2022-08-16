@@ -76,6 +76,14 @@ stages:
       inputs:
         terraformVersion: 'latest'
 
+- stage: TF_APPROVE
+  jobs:
+  - job:
+    steps:
+    - task: ManualValidation@0
+      displayName: TF_ApproveDecommissioning
+      inputs:
+        instructions: 'Task TF_DECOMMISSION, approve?'
 - stage: TF_DECOMMISSION
   jobs:
   - job:
