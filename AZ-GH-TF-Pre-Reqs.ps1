@@ -19,7 +19,7 @@ $storageName = "storagecr$ProjectName$randomInt".ToLower()
 $kvName = "keyvault$ProjectName$randomInt"
 $spnName="SPN-$ProjectName" #AppName=SpnName
 $region = "westeurope"
-$websiteStorageName = "website$ProjectName$randomInt".ToLower()
+$websiteStorageName = "web$ProjectName$randomInt".ToLower()
 $SQLServerInstanceName = "sql$ProjectName$randomInt".ToLower()
 $dwp = Read-Host -Prompt "Dwp?"
 
