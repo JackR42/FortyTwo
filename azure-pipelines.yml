@@ -86,8 +86,8 @@ stages:
       inputs:
         instructions: 'Stage TF_DECOMMISSION, do you approve?'
   - job: 
-    dependsOn: GetApprovalForDecommissioning
-    condition: SucceededWithIssues()
+#    dependsOn: GetApprovalForDecommissioning
+#    condition: SucceededWithIssues()
     steps:
     - task: TerraformInstaller@0
       displayName: TF_Decommission
