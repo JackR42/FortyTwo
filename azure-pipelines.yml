@@ -78,7 +78,7 @@ stages:
 
 - stage: TF_DECOMMISSION
   jobs:
-  - job: GetApprovalForDecommissioning
+  - job:
   steps:
     - task: ManualValidation@0
       displayName: TF_Approve
