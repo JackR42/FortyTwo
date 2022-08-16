@@ -87,3 +87,6 @@ stages:
         instructions: 'Stage TF_DECOMMISSION, do you approve?'
   - job: 
     displayName: TF_Decommission
+    dependsOn: GetApprovalForDecommissioning
+    condition: SucceededWithIssues()
+    
