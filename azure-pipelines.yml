@@ -76,20 +76,17 @@ stages:
       inputs:
         terraformVersion: 'latest'
 
-- stage: TF_APPROVE
-  pool: server
-  jobs:
-  - job:
-    steps:
-    - task: ManualValidation@0
-      displayName: TF_ApproveDecommissioning
-      inputs:
-        instructions: 'Task TF_DECOMMISSION, approve?'
-
 - stage: TF_DECOMMISSION
   jobs:
+  - job: GetApprovalForDecommissioning
+    - task: ManualValidation@0
+      pool: server
+      displayName: GetApprovalForDecommissioning
+      inputs:
+        instructions: 'Task TF_DECOMMISSION, approve?'
   - job:
-    steps:
+    dependsOn: GetApprovalForDecommissioning
+    condition: Succeeded() # This job will only run if Approval job succeeded
     - task: TerraformInstaller@0
       displayName: TF_Install
       inputs:
