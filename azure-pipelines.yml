@@ -86,7 +86,7 @@ stages:
         instructions: 'Task TF_DECOMMISSION, approve?'
   - job:
     dependsOn: GetApprovalForDecommissioning
-    condition: Succeeded() # This job will only run if Approval job succeeded
+    condition: Succeeded()
     - task: TerraformInstaller@0
       displayName: TF_Install
       inputs:
