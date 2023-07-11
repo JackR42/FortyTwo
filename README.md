@@ -4,7 +4,7 @@
 02. Create empty GitHub repository with Readme.md, e.g.: GitHub repo FortyTwo
 03. Add script to repo: AZ-GH-TF-Pre-Reqs.ps1
 04. Run prerequisites script: AZ-GH-TF-Pre-Reqs.ps1
-- a. Create Core resource group for the pro ject
+- a. Create Core resource group for the project
 - b. Create KeyVault for Secrets in Core RG
 - c. Create Storage account for stateful Terraform Backend in Core RG
 - d. Create SPN - Service Provider for connecting Azure DevOps Pipeline
